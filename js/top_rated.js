@@ -22,6 +22,8 @@ const requests = {
 function truncate(str, n) {
     return str?.length > n ? str.substr(0, n - 1) + "..." : str;
 }
+
+
 // banner
 /*fetch(requests.fetchNetflixOrignals)
     .then((res) => res.json())
@@ -126,8 +128,6 @@ fetch(requests.fetchTrending)
                 button.innerHTML = `<button type="button" class="row__button btn btn-light" onclick="getInfo(${movie.id})" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 </button>`;
                 row_posters.appendChild(button)
-                
-
             }   
             
         });
@@ -136,9 +136,27 @@ fetch(requests.fetchTrending)
     }); 
 
     
-    // function getInfo(movieID){
-    //     alert(movieID)
-    // }
+    function getInfo(movieID){
+        fetch(`${base_url}/movie/${movieID}?${api}`)
+        .then((res) => res.json())
+        .then((data)=>{
+        //console.log(data)
+        let resume = getElementById('resume')
+        resume.innerText = movie.overview
+
+
+
+        const modal = getElementById("exampleModal");
+        const title = document.createElement("h5");
+        title.className = "modal-title";
+        modal.appendChild(title);
+        const poster = document.createElement("img");
+        poster.className = "img-card";
+        modal.appendChild(poster);
+        });  
+        
+
+    }
 
 // action
 fetch(requests.fetchActionMovies)
