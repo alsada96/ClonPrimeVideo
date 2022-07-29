@@ -139,20 +139,11 @@ fetch(requests.fetchTrending)
     function getInfo(movieID){
         fetch(`${base_url}/movie/${movieID}?${api}`)
         .then((res) => res.json())
-        .then((data)=>{
-        //console.log(data)
-        let resume = getElementById('resume')
-        resume.innerText = movie.overview
-
-
-
-        const modal = getElementById("exampleModal");
-        const title = document.createElement("h5");
-        title.className = "modal-title";
-        modal.appendChild(title);
-        const poster = document.createElement("img");
-        poster.className = "img-card";
-        modal.appendChild(poster);
+        .then((data) => {
+        console.log(data)
+        
+        let resume = getElementById('resume');
+        resume.innerText = movieoverview;
         });  
         
 
